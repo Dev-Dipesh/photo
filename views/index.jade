@@ -1,32 +1,62 @@
 extends layout
 
 block content
-	header
-		nav
-			ul
-				li
-					a(href="/") Home
-				li
-					a(href="/about") About
-				li
-					a(href="/contact") Contact
 	- var title = value
-	div#main_content
-		if title == "about"
-			h1 about
-		if title == "home"
-			h1 home
-		if title == "contact"
-			h1 contact
+	header
+		nav.navbar.navbar-inverse.navbar-fixed-top(role="navigation")
+			div.container-fluid
+				.navbar-header
+				a.navbar-brand(href='#') Express Blog
+				#bs-example-navbar-collapse-6.collapse.navbar-collapse
+					ul.nav.navbar-nav
+						case title
+							when "home"
+								li.active
+									a(href='/') Home
+								li
+									a(href='/about') About
+								li
+									a(href='/contact') Contact
+							when "about"
+								li
+									a(href='/') Home
+								li.active
+									a(href='/about') About
+								li
+									a(href='/contact') Contact
+							when "contact"
+								li
+									a(href='/') Home
+								li
+									a(href='/about') About
+								li.active
+									a(href='/contact') Contact
+							default
+								li
+									a(href='/') Home
+								li
+									a(href='/about') About
+								li
+									a(href='/contact') Contact
+					form.navbar-form.navbar-right(role='form')
+						.form-group
+							input.form-control(type='text', placeholder='Email')
+						.form-group
+							input.form-control(type='password', placeholder='Password')
+						button.btn.btn-success(type='submit') Sign in
+
+	if title == "about"
+		include about
+	if title == "home"
+		include home
+	if title == "contact"
+		include contact
 	section#wrapper!= body
-		footer
-			section.css-table
-				section.four-column
-					section.cell
-						p Mauris porttitor <br />felis eu leo aliquet<br /> ac rutrum odio aliquet
-					section.cell
-						p Mauris porttitor <br />felis eu leo aliquet<br /> ac rutrum odio aliquet
-					section.cell
-						p Mauris porttitor <br /> fe;os eu leo aliquet<br /> ac rutrum odio aliquet
-					section.cell
-						p Mauris porttitor <br />felis eu leo aliquet<br /> ac rutrum odio aliquet
+		div.container
+			footer.row
+				section.col-md-4
+					| Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+				section.col-md-4
+					| Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+				section.col-md-4
+					| Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
